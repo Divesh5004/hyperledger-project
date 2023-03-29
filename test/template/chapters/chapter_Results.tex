@@ -1,0 +1,48 @@
+\chapter{Results}
+\label{ch:results}
+%
+% Section: Pros and Cons of using hyperledger
+%
+\section{Pros and Cons of using hyperledger Fabric}
+This framework has some pros and cons.
+\label{sec:results:proscons}
+\subsection{Pros}
+Fabric architecture allows the option to add plugins for the identity management and consensus algorithm. This helps companies having their own identity management system to integrate with fabric.
+The main aim of companies using permissioned blockchain is the confidentiality of data. MSP component in fabric issues and validates certificates and provides user authentication. Data is secure since all the participants in the blockchain network are known. 
+The \ac{PoW} algorithm is not used and hence mining is not required. This significantly optimizes the performance of the fabric. Fabric allows the creation of a private channel for only a few participants among a large blockchain network. There might be few transactions that should be viewed only by limited participants.
+
+\subsection{Cons}
+The architecture of hyperledger fabric is quite complex. It is not a fault-tolerant network. As of today fabric supports LevelDB and CouchDb. In the health care scenario, MRI reports and high resolution images need to stored, in such cases fabric provides limited database support.
+
+%
+% Section: Issues in hyperledger
+%
+\section{Issues in hyperledger}
+
+% TODO: use admin credentials instead of doctor
+
+\label{sec:results:issues}
+Hyperledger Fabric project is an open-source blockchain platform that is still under development. New features and fixes are being developed every day. The following are some of the issues that were faced during the development of the application.
+
+
+\subsection{getHistoryForKey - Private Data Collecion}
+\label{sec:results:issues:getHistoryForKey}
+% TODO: UPDATE THE LINK IN THE REFERENCES
+In the current version of Hyperledger Fabric, the fabric doesn't support the API getHistoryForKey for a private data collection \cite{jira-5094}, however, this is a work in progress by the Hyperleder Fabric community which adds a history index and chaincode API similar to public data history to enable the query of history of a private data key. 
+
+\subsection{Create a user defined role instead of client}
+
+The current version of hyperledger fabric the only possible roles for \lstinline{hf.Registrar.Roles}  are Peer, client, and admin. The flaw with only 3 roles is, now all the clients have the same set of permission, but in a blockchain, there can be any number of types of roles and a set of permissions for each user-defined role. In the scenario, doctor and patient can be the user-defined roles rather than just the client. Doctor and patients can have their own set of rules to accomplish the issue mentioned in \ref{sec:results:issues:Access}. The fabric community is currently in progress to implement a way to add new hf.Registrar.(Delegate)Roles \cite{jira-548}.
+
+\subsection{Access user attributes using client}
+\label{sec:results:issues:Access}
+In this scenario, as the doctor is not an asset to the ledger, the name and specialty of the doctor are stored in the attributes of the identity. However, the patients in the blockchain network cannot retrieve the attributes, as the patient does not have the access to read the doctor's attributes, but can be read using the admin user. This issue is due to the reason that a separate set of permissions cannot be applied as all the clients are considered to be the same. 
+%
+% Section: Challenges in the application
+%
+\section{Challenges in developing application}
+\label{sec:results:challenges}
+Major challenges are faced in implementing security on patient data in the ledger on a peer level. As there are two mechanisms described in \ref{sec:thesolution:securitymechanisms}. The private data collection approach is unable to apply due to fabric issues described in the above section. For data re-encryption, the approach fails to implement due to two major reasons. The first problem is, nodejs is lacking a decent library for re-encryption. Few libraries are available here \cite{nodejs-reencryption-libraries}. But none of them worked here. One has a working approach but does not fit regular system generated private and public keys. The format is not understandable by that library. Node-RSA is a very library for public-key cryptography and also accepts keys with the regular format, but does not have re-encryption functionality. There is an opportunity here to understand implement a re-encryption algorithm which is a time consuming task but a nice step as a separate small project and contributing to the community. The other problem is when a user gets created certificate and private key are generated. But not able to find a public key in the fabric framework. More research is required to diagnose this issue and make re-encryption mechanism work.
+Next challenge faced in scaling peers of hospital organizations. For some reason, one fabric-peer container always stops when the network gets up. In addition to that when generating ccp files, not all peer configurations are included. The work is in progress and \href{https://github.com/kshitijyelpale/blockchain-hyperledger-fabric-electronic-patient-records/pull/51}{draft pull request is opened}.
+
+

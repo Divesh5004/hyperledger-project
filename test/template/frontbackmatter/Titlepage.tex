@@ -1,0 +1,67 @@
+%*******************************************************
+% Titlepage
+%*******************************************************
+%%%
+%%% title page (german)
+%%%
+\thispagestyle{empty}
+\pdfbookmark[0]{Titelblatt}{title}
+\begin{titlepage}
+
+  % If printed on two sides, center the title page
+  \condTWOSIDE{\changetext{}{19mm}{}{19mm}{}}
+
+  \vspace{1cm}
+  \begin{center}
+    \includegraphics[width=7.7cm]{gfx/fra-uas_logo} \\ 
+  \end{center}
+
+  \begin{center}
+    \vspace{0.1cm}
+    \huge \textbf{\myUni}\\
+    \vspace{0.4cm}
+    \LARGE --\myFaculty--
+  \end{center}
+
+  \vfill
+  \vfill
+
+  \begin{center}
+    \LARGE \textbf{\myTitle}
+  \end{center} 
+
+  \vfill
+  \vfill
+
+  \begin{center}
+    \Large is a bonafide work done by\\
+    \vspace{0.3cm}
+  \end{center}
+
+  \vfill
+
+  \begin{center}
+    \vspace{0.3cm}
+    \Large \textbf{Jathin Sreenivas} \vspace{0.3cm} 
+    \large (1321762)\\
+    \Large \textbf{Kshitij Yelpale}
+    \large (1322509)\\
+    \vspace{0.3cm} 
+    \Large \textbf{Varsha Vasudev Kamath}
+    \vspace{0.3cm}
+    \large (1323058)
+  \end{center}
+
+  \vfill
+  \vfill
+
+  \begin{center}
+    \begin{tabular}{lll}
+      Under the guidance of    & : & \myProf \\
+    \end{tabular}
+  \end{center} 
+
+  % If printed on two sides, center the title page
+  \condTWOSIDE{\changetext{}{-19mm}{}{-19mm}{}}
+
+\end{titlepage}

@@ -1,0 +1,26 @@
+\chapter{Conclusion and Future Work}
+\label{ch:conclusion}
+
+%
+% Section: conclusion
+%
+\section{Conclusion}
+\label{sec:conclusion:Conclusion}
+
+Hyperledger fabric is a promising blockchain framework that has some concepts of policies, smart contracts, and provision of secure identities which make the records secure and controlled. It enables the EHR systems to interoperable among multiple hospital organizations. Doctors can track history easily. Patients do not need to carry medical history files and will be significant improvements in digital records. 
+
+An EHR scenario comes under the private and closed blockchain category and this solution can successfully conclude that it is an encouraging framework of this kind of blockchain. It provides a reliable and secure solution in managing medical field record
+
+%
+% Section: Future Work
+%
+\section{Future Work}
+\label{sec:conclusion:futurework}
+
+Many improvements can be done to improve the solution, make a production-grade application. Even though blockchain and fabric provide tons of security by default in their framework and concept, still need to overcome the security challenges discussed above and implement successful security for the patient records. Though the fabric framework is quite pluggable by itself, the source code can be improved to make the solution more pluggable when adding more hospitals and its peers. As the network scales up, more organizations and peers are connected to the channel, and to handle many transaction requests and approvals, many ordering peers are needed to speed up the process. Apaches Kafka, an open-source distributed event streaming platform is a very promising tool to manage multiple ordering nodes. 
+
+Design consortium policy in such a way that minimum criteria of consensus algorithm can be satisfied. The fabric uses pBFT in which all peers' approval is needed to approve transactions, such as 75\%approving criteria it means 3 out of 4 peer's approval is sufficient to make a transaction. Distribute the wallet as per the organization's peers. The users created at the wallet should be stored to their respective organization peers. The wallet can also be stored in the no-SQL database and replicate to multiple nodes to avoid data loss. 
+
+The network calls in the network should be done via HTTPS which provides transport-level security (TLS). Currently, from the front end to the back end, passwords are sent in plain text which can be improved by this. For temporary password integration of email, functionality is the best approach. Moreover adaption of forgetting password functionality is good to have. UI/UX strategies can be applied to make enhance the experience. Search functionality can be useful when patients' data go beyond the limit. But need to research that if fabric supports wildcard searches or not. Again the data is not coming from a single database so it is important that frequent search queries can not be possible.
+
+The application should have the test cases to run the application in a production environment. Few test cases are available but it should have a test case for unit, integration, public REST API, and end-to-end cases. The existing test case was written using the Cypress framework which is an E2E testing framework. An application can be deployed using Kubernetes for the production environment. As the network grows the more hospitals with their peers and channels exist in the network. So Kubernetes is the best orchestration tool to manage all these containers.

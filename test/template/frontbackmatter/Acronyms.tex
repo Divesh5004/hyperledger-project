@@ -1,0 +1,30 @@
+%*******************************************************
+% Acronyms
+%*******************************************************
+\automark[section]{chapter}
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
+\refstepcounter{dummy}
+\pdfbookmark[1]{Acronyms}{Acronyms}
+\markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
+\chapter*{Acronyms}
+
+% Insert your acronyms here
+\begin{acronym}[MPSoC]
+  \acro{EHR}{Electronic Health Record}
+  \acro{EMR}{Electronic Medical Record}
+  \acro{HL7}{Health Level 7}
+  \acro{FHIR}{Fast Healthcare Interoperability Resources}
+  \acro{PoW}{Proof of Work}
+  \acro{PoS}{Proof of Stake}
+  \acro{RSM}{Replicated state machine}
+  \acro{pBFT}{Practical Byzantine Fault Tolerance}
+  \acro{tps}{Transactions Per Second}
+  \acro{CA}{Certificate Authority}
+  \acro{MSP}{Membership Service Provider}
+  \acro{SDK}{Software Development Kit}
+  \acro{HLF}{Hyprledger Fabric}
+\end{acronym}
+
+
+\cleardoublepage

@@ -1,0 +1,327 @@
+---
+openapi: 3.0.0
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  version: v1
+  title: Team Lithium Fabris SDK API's
+  description: |
+    The first version of the backend routes of the Fabric SDK available.
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+servers:
+  - url: http://localhost:3001
+    description: Localhost
+
+################################################################################
+#                                   Tags                                       #
+################################################################################
+tags:
+  - name: Patients
+  - name: Doctors
+
+################################################################################
+#                                           Paths                              #
+################################################################################
+paths:
+  /patients/register:
+    post:
+      tags:
+        - Patients
+      security:
+        - bearerAuth: []
+      description: Register a Patient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          description: Patient created
+        '403':
+          description: Forbidden
+
+  /doctors/register:
+    post:
+      tags:
+        - Doctors
+      security:
+        - bearerAuth: []
+      description: Register a Doctor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hospitalID:
+                  type: integer
+                doctorID:
+                  type: string
+      responses:
+        '200':
+          description: Doctor created
+        '403':
+          description: Forbidden
+
+  /login:
+    post:
+      description: Admin/Doctor/Patient Login.
+      requestBody:
+        description: Credentials enclosed in the body.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/credentials'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+        '400':
+          description: Bad request. Incorrect Credentials
+
+  /patients/_all:
+    get:
+      tags:
+        - Patients
+      description: Get all patients data.
+      responses:
+        '200':
+          description: All Patients object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+
+  /patients/{patient-id}:
+    parameters:
+      - in: path
+        name: patient-id
+        schema:
+          type: string
+        description: Patient ID
+        required: true
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Patients
+      description: Get basic information about a patient.
+      responses:
+        200:
+          description: The patient object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+
+  /patients/{patient-id}/history:
+    parameters:
+      - in: path
+        name: patient-id
+        schema:
+          type: string
+        description: Patient ID
+        required: true
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Patients
+      description: Get history of a patient.
+      responses:
+        200:
+          description: The patient object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+
+  /patients/{patient-id}/details/personal:
+    parameters:
+      - in: path
+        name: patient-id
+        schema:
+          type: string
+        description: Patient ID
+        required: true
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - Patients
+      description: Update personal information about a patient.
+      requestBody:
+        description: New Personal Information enclosed in the body.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientPersonal'
+      responses:
+        200:
+          description: Patient Updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: string
+        500:
+          description: Failed Request
+
+  /patients/{patient-id}/details/medical:
+    parameters:
+      - in: path
+        name: patient-id
+        schema:
+          type: string
+        description: Patient ID
+        required: true
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - Patients
+      description: Update medical information about a patient.
+      requestBody:
+        description: New Personal Information enclosed in the body.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientMedical'
+      responses:
+        200:
+          description: Patient Updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: string
+        500:
+          description: Failed Request
+
+
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+components:
+  responses:
+    UnauthorizedError:
+      description: Authentication information is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Doctor:
+      title: Doctor
+      type: object
+      properties:
+        address:
+          type: string
+        age:
+          type: string
+        docType:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+        - address
+        - age
+        - docType
+        - firstName
+        - lastName
+
+    PatientMedical:
+      title: Patient medical details
+      type: object
+      properties:
+        newDiagnosis:
+          type: string
+        newFollowUp:
+          type: string
+        newSymptoms:
+          type: string
+        newTreatment:
+          type: string
+      
+    PatientPersonal:
+      title: Patient personal details
+      type: object
+      properties:
+        newAddress:
+          type: string
+        newAllergies:
+          type: string
+        newEmergPhoneNumber:
+          type: string
+        newPhoneNumber:
+          type: string
+
+    Patient:
+      title: Patient
+      type: object
+      properties:
+        address:
+          type: string
+        age:
+          type: string
+        docType:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+        - address
+        - age
+        - docType
+        - firstName
+        - lastName
+
+    credentials:
+      title: credentials
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+    
+    token:
+      type: object
+      properties:
+        accessToken:
+          type: string
+
+    ErrorTransaction:
+      title: Error Transaction
+      type: object
+      properties:
+        message:
+          type: string
+        stack:
+          type: string

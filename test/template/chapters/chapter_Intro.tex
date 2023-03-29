@@ -1,0 +1,38 @@
+\chapter{Introduction}
+\label{ch:intro}
+
+%
+% Section: Background
+%
+\section{Background}
+\label{sec:intro:Background}
+The health care services received from various hospitals and clinics have become prevalent, due to the predominant increase of specialty in the health care services and patient's mobility. Doctors with information about the patient’s medical history can make precise decisions about the patient’s medical condition and treatment. A major problem that the health care services are facing now, is how to share the clinical data with various health care facilities while ensuring confidentiality, data integrity, and patient privacy.
+
+%
+% Section: Existing Systems
+%
+\section{Existing Systems}
+\label{sec:intro:Existing System}
+An \ac{EHR} is an electronic version of a patient's medical details.
+In current times, \ac{EHR} is used to share patients' medical records across various hospitals. \ac{EHR} consists of health information of the patient in the form of \ac{EMR} \cite{EHR}. \ac{EMR} contains a patient’s medical diagnoses, allergies, history, treatment, and laboratory reports\cite{blockchain}. The large amount of data in \ac{EHR} can be used for machine learning and data analysis.
+
+The healthcare IT standards that are used in \ac{EHR} are \ac{FHIR} and  \ac{HL7} to transfer clinical data between various applications that are used by different healthcare providers.
+
+The other models for interchange of medical data between health care providers are push, pull, and view.
+
+\begin{itemize}
+    \item Push - The medical information is sent from one health care provider to another and the transaction cannot be accessed by any other party. In the U.S, a protected email standard named Direct is used for the encrypted transfer between sender and receiver.
+    From the data creation till the data use, there is no assurance of data integrity. It is accepted that the sender produced an exact payload and the receiver precisely ingested the payload. It is done without a standard audit trail \cite{potential}.
+    \item Pull - Medical information from one health care provider may be queried by another health care provider.
+    \item View - One health care organization can look into the patient's medical data from another health care  organization's record\cite{potential}. 
+\end{itemize}
+
+
+
+%
+% Section: Motivation
+%
+\section{Motivation}
+\label{sec:intro:motivation}
+
+Blockchain-based systems are a decentralized technology that is used in several industries such as logistics, supply chain management, finance applications and Internet of Things (IoT)\cite{Beck}. Blockchain provides a secure distributed database and queries to the database can be made without any intervention of unauthorized identities. It is highly efficient in the case when various participants want to access the same database. Thus, blockchain can minimize a lot of resources and costs to access the same database securely. HLF is a permissioned blockchain system that helps in preserving trust among participants in the network using CAs and MSPs. Medical data storing and sharing is an integral part of healthcare systems. However, sharing personal data among various participants through unsecured means can lead to leakage of critical information. Also, the lack of client control over their personal information leads to harmful consequences such as unauthorized identities can access/edit the personal medical details. And during sharing of the patient details can lead to even more risks\cite{7996966}. The critical issue in the electronic health/medical records (EHR/EMR) is maintaining the interoperability among various involved identities. This issue may cause obstacles in the data transaction among each other. There is a lack of data management and sharing mechanism among the identities which leads to fragmentation of the healthcare information. Apart from interoperability, data security and privacy are also challenges in the current ways of data storing and sharing data through EHR/EMR systems\cite{Peterson2016ABA}. Sharing and storing patient's data has a lot of liabilities due to data leakage and potential shortcoming in security mechanisms. Blockchain for healthcare can ensure the security of the personal and medical information of the patients and can make sure that only authorized identities can access/edit the data using smart contracts which enables specific features among various identities in the system \cite{Tanwar2020}. Therefore, there is a clear need for a distributed way of sharing and store data where patients are more sure about their data security and privacy and in addition, all the involved identities can see the holistic view of overall transaction and interactions \cite{8531136}.

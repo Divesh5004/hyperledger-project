@@ -1,0 +1,7 @@
+
+
+https://www.getpostman.com/collections/8fdec9df0edd68ad2c4d
+
+
+-------------------------link erc20 postman------------------------------
+https://api.postman.com/collections/26095580-8ef8c25d-c6bd-4d1f-b5f3-61067332c492?access_key=PMAT-01GW4SXZ8Z34MKZJ8AZVGM6Q7H
